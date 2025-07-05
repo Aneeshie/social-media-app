@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "../components/theme-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,37 +22,32 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <ClerkProvider>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
         >
-    <ClerkProvider>
-      <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-      >
-        <div className="min-h-screen">
-        <Navbar/>
-          <main className="py-6">
-                <div className="max-w-[6vw] mx-auto px-5">
-                  <div className="grid grid-cols-1 lg:grid-cols-9 gap-4">
-                    <div className="hidden lg:block lg:col-span-2">sidebar</div>
-                    <div className="lg:col-span-6">{children}</div>
-                  </div>
-                </div>
-          </main>
-        </div>
-      </ThemeProvider>
-    </ClerkProvider>
-        </body>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <div className="flex flex-1 overflow-hidden">
+              <Sidebar />
+              <main className="flex-1 overflow-y-auto p-4 lg:p-6 bg-background">
+                {children}
+              </main>
+            </div>
+          </div>
+        </ThemeProvider>
+      </ClerkProvider>
+      </body>
       </html>
-
   );
 }
