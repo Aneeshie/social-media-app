@@ -26,17 +26,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+    <ClerkProvider>
+      <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+      >
         <div className="min-h-screen">
         <Navbar/>
           <main className="py-6">
@@ -48,9 +48,10 @@ export default function RootLayout({
                 </div>
           </main>
         </div>
-        </body>
-      </html>
       </ThemeProvider>
     </ClerkProvider>
+        </body>
+      </html>
+
   );
 }

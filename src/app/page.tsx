@@ -13,7 +13,7 @@ export default function Home() {
       <SignedIn>
         <UserButton />
       </SignedIn>
-    
+
       <Button variant="secondary">Click Me</Button>
       <ModeToggle />
     </div>          
