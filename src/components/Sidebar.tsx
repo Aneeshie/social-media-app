@@ -1,11 +1,19 @@
+import Link from "next/link";
+
 export default function Sidebar() {
     return (
-        <aside className="hidden lg:flex lg:flex-col w-64 bg-muted p-4 border-r border-border">
-            <div className="font-bold text-lg mb-4">Sidebar</div>
-            <nav className="space-y-2">
-                <a href="#" className="block hover:text-primary">Dashboard</a>
-                <a href="#" className="block hover:text-primary">Projects</a>
-                <a href="#" className="block hover:text-primary">Settings</a>
+        <aside className="hidden lg:flex lg:flex-col w-64 bg-black text-white p-4 border-r border-neutral-800">
+            <div className="text-xl font-semibold mb-6">Menu</div>
+            <nav className="space-y-3">
+                <Link href="/" className="block px-2 py-1 rounded hover:bg-neutral-900">
+                    Dashboard
+                </Link>
+                <Link href="/projects" className="block px-2 py-1 rounded hover:bg-neutral-900">
+                    Projects
+                </Link>
+                <Link href="/settings" className="block px-2 py-1 rounded hover:bg-neutral-900">
+                    Settings
+                </Link>
             </nav>
         </aside>
     );
